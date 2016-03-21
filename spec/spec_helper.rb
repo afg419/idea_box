@@ -20,10 +20,12 @@ RSpec.configure do |config|
 
   def create_ideas(n)
     n.times do |i|
-      Idea.create(title: "Title#{i}",
-                  body: "Body#{i}",
-                  quality: i % 3)
+      Idea.create(create_idea_params(i)[:idea])
     end
+  end
+
+  def create_idea_params(i, opts = {})
+    {idea: {title: "Title#{i}", body: "Body#{i}", quality: i % 3}.merge(opts)}
   end
 
   # rspec-expectations config goes here. You can use an alternate
