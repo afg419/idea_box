@@ -24,8 +24,8 @@ RSpec.configure do |config|
     end
   end
 
-  def create_idea_params(i)
-    {idea: {title: "Title#{i}", body: "Body#{i}", quality: i % 3}}
+  def create_idea_params(i, opts = {})
+    {idea: {title: "Title#{i}", body: "Body#{i}", quality: i % 3}.merge(opts)}
   end
 
   # rspec-expectations config goes here. You can use an alternate
