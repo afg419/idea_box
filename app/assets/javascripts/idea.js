@@ -1,5 +1,5 @@
 function domIdea(idea){
-  return (`<li>${idea.title}: ${formatQuality(idea.quality)}` +
+  return (`<li class='idea ${idea.id}'>${idea.title}: ${formatQuality(idea.quality)}` +
             `<p>Content: ${formatBody(idea.body)}<\p>`+
           `</li>`)
 }

@@ -9,9 +9,9 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
     expect(reply.length).to eq 3
     reply.each_index do |i|
-      expect(reply[i]["title"]).to eq "Title#{i}"
-      expect(reply[i]["body"]).to eq "Body#{i}"
-      expect(reply[i]["quality"]).to eq i
+      expect(reply[i]["title"]).to eq "Title#{2-i}"
+      expect(reply[i]["body"]).to eq "Body#{2-i}"
+      expect(reply[i]["quality"]).to eq 2-i
     end
     expect(response.status).to eq 200
   end
