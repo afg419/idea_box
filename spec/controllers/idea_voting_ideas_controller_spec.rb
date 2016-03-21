@@ -36,7 +36,15 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     post :vote, idea: {id: idea.id, vote: -1}
     idea.reload
     expect(idea.quality).to eq 1
+    expect(response.body).to eq "downvoted #{idea.title}"
 
     expect(response.status).to eq 200
   end
+
+  it "alerts user if they tried to vote on something that doesnt exist" do
+    post :vote, idea: {id: 1, vote: -1}
+    expect(response.body).to eq "something went wrong..."
+    expect(response.status).to eq 200
+  end
+
 end

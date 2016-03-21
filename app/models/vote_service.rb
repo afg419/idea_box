@@ -9,6 +9,7 @@ class VoteService
   def vote
     if vote_cast?
       execute_vote
+      "#{modifier_to_english} #{idea.title}"
     else
       "something went wrong..."
     end
@@ -16,6 +17,11 @@ class VoteService
 
   def execute_vote
     idea.quality = keep_within_bounds(idea.quality + vote_modifier.to_i)
+    idea.save
+  end
+
+  def modifier_to_english
+    Hash.new("didn't vote").merge({"1" => "upvoted", "-1" => "downvoted"})[vote_modifier]
   end
 
   def vote_cast?
