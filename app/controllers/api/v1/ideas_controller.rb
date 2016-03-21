@@ -22,6 +22,15 @@ class Api::V1::IdeasController < ApplicationController
     end
   end
 
+  def update
+    idea = Idea.find_by(id: params[:id])
+    if idea && idea.update_attributes(idea_params.except("quality"))
+      render json: "edited idea #{idea.title}"
+    else
+      render json: "you didn't even have that idea."
+    end
+  end
+
   def vote
     reply = VoteService.new(params).vote
     render json: reply
