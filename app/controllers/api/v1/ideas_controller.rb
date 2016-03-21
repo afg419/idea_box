@@ -22,6 +22,11 @@ class Api::V1::IdeasController < ApplicationController
     end
   end
 
+  def vote
+    reply = VoteService.new(params).vote
+    render json: reply
+  end
+
   private
 
   def idea_params
