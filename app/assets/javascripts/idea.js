@@ -1,8 +1,9 @@
 class Idea{
-  constructor(title, body, quality){
+  constructor(title, body, quality, id){
     this.title = title;
     this.body = body;
     this.quality = quality;
+    this.id = id;
   }
 
   render(){
