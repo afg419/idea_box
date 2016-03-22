@@ -5,9 +5,12 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     idea = Idea.create(title: "t1", body: "b1", quality: 0)
     post :vote, idea_id: idea.id, idea: {vote: 1}
     idea.reload
+
     expect(idea.quality).to eq 1
+    reply = JSON.parse(response.body)
+
+    expect(reply["title"]).to eq idea.title
     expect(response.status).to eq 200
-    expect(response.body).to eq "upvoted #{idea.title}"
 
     idea = Idea.create(title: "t2", body: "b2", quality: 1)
     post :vote, idea_id: idea.id, idea: {vote: 1}
@@ -35,8 +38,11 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     idea = Idea.create(title: "t3", body: "b3", quality: 2)
     post :vote, idea_id: idea.id,  idea:{vote: -1}
     idea.reload
+
+    reply = JSON.parse(response.body)
+
     expect(idea.quality).to eq 1
-    expect(response.body).to eq "downvoted #{idea.title}"
+    expect(reply["title"]).to eq idea.title
 
     expect(response.status).to eq 200
   end
