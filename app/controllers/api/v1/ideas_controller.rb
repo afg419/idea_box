@@ -24,10 +24,11 @@ class Api::V1::IdeasController < ApplicationController
 
   def update
     idea = Idea.find_by(id: params[:id])
-    if idea && idea.update_attributes(idea_params.except("quality"))
-      render json: "edited idea #{idea.title}"
+    if idea && idea.update_attributes(update_params(idea))
+      render json: idea
     else
-      render json: "you didn't even have that idea."
+      response.status = 400
+      render json: idea.errors.full_messages
     end
   end
 
@@ -35,7 +36,15 @@ class Api::V1::IdeasController < ApplicationController
     render json: VoteService.new(params).vote
   end
 
-  private
+private
+
+  def update_params(idea)
+    ups = idea_params.except("quality")
+    if params["title"] == idea.title
+      ups = ups.except("title")
+    end
+    ups
+  end
 
   def idea_params
     params.require("idea").permit("title", "body", "quality")

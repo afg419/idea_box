@@ -1,35 +1,49 @@
-function renderIdea(idea){
-  $('.ideas').prepend(domIdea(idea));
-  setDeleteListener(idea.id);
-  setVoteListener(idea.id)
-}
+class Idea{
+  constructor(title, body, quality, id){
+    this.id = id;
+    this.title = title;
+    this.body = body;
+    this.quality = quality;
+    this.active = false;
+    this.format = new IdeaFormat(this)
+    this.edit = new IdeaEdit(this)
+    this.delete = new IdeaDelete(id)
+    this.voter = new IdeaVote(id)
+  }
 
-function domIdea(idea){
-  return (`<li id="idea-${idea.id}" class="idea">` +
-              voter() +
-              `  ${idea.title}: ${formatQuality(idea.quality)}` +
-              `<p>Content: ${formatBody(idea.body)}<\p>`+
-              deleteButton(idea.id) +
-          `</li>`)
-}
+  render(){
+    $('.ideas').prepend(this.ideaHtml());
+    this.setEventListeners();
+  }
 
-function formatQuality(quality){
-  return {0: "swill", 1: "plausible", 2: "genius"}[quality]
-}
+  reRender(){
+    $('.ideas').find(`#idea-${this.id}`).replaceWith(this.ideaHtml());
+    this.setEventListeners();
+  }
 
-function formatBody(body){
-  var index = body.split(" ").reduce(function(acc, word){
-    if(acc + word.length < 100){
-      return acc + word.length
-    } else {
-      return acc
-    }
-  }, 0)
-  return body.substring(0,index)
-}
+  ideaHtml(){
+    return (`<li id="idea-${this.id}" class="idea">` +
+                this.voter.buttons() +
+                `<div class='title'>${this.format.ideaTitle()}</div>` + ` ${this.format.ideaQuality()}` +
+                `<p class='body'>Content: ${this.format.ideaBody()}</p>` +
+                `${this.delete.button()} <span>${this.edit.button()}</span>` +
+            `<br><br></li>`)
+  }
 
-function reRenderIdea(idea){
-  $('.ideas').find(`#idea-${idea.id}`).replaceWith(domIdea(idea))
-  setDeleteListener(idea.id);
-  setVoteListener(idea.id)
+  setEventListeners(){
+    this.voter.setListener();
+    this.delete.setListener();
+    this.edit.setListener();
+  }
+
+  resetHelpers(){
+    this.format = new IdeaFormat(this);
+    this.edit = new IdeaEdit(this);
+  }
+
+  reset(){
+    this.setEventListeners();
+    // this.resetHelpers();
+    this.reRender();
+  }
 }

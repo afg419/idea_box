@@ -8,7 +8,7 @@ function createIdea(){
       url: "/api/v1/ideas",
       data: getNewIdeaFormData(),
       success: function(msg){
-        renderIdea(msg);
+        msgToIdea(msg).render();
         wipeNewIdeaFields();
       },
       error: function(error_message){
@@ -20,7 +20,7 @@ function createIdea(){
 function getNewIdeaFormData(){
   var title = $('#new-idea-title').val()
   var desc = $('#new-idea-desc').val()
-  return data = {idea: {title: title, body: desc, quality: 0}}
+  return {idea: {title: title, body: desc, quality: 0}}
 }
 
 function wipeNewIdeaFields(){
