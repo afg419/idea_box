@@ -1,8 +1,5 @@
 class Idea{
   constructor(title, body, quality, id){
-    this.title = title;
-    this.body = body;
-    this.quality = quality;
     this.id = id;
     this.format = new IdeaFormat(title, body, quality, id)
     this.delete = new IdeaDelete(id)
