@@ -9,7 +9,6 @@ class VoteService
   def vote
     if vote_cast?
       execute_vote
-      "#{modifier_to_english} #{idea.title}"
     else
       "something went wrong..."
     end
@@ -18,6 +17,7 @@ class VoteService
   def execute_vote
     idea.quality = keep_within_bounds(idea.quality + vote_modifier.to_i)
     idea.save
+    idea
   end
 
   def modifier_to_english

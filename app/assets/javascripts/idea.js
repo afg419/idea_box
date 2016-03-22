@@ -27,3 +27,9 @@ function formatBody(body){
   }, 0)
   return body.substring(0,index)
 }
+
+function reRenderIdea(idea){
+  $('.ideas').find(`#idea-${idea.id}`).replaceWith(domIdea(idea))
+  setDeleteListener(idea.id);
+  setVoteListener(idea.id)
+}

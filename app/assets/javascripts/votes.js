@@ -9,14 +9,12 @@ function setVoteListener(id){
 };
 
 function vote(modifier, id){
-  debugger
   $.ajax({
       type: "POST",
       url: `/api/v1/ideas/${id}/vote`,
-      data: getNewIdeaFormData(),
+      data: {idea: {vote: modifier}},
       success: function(msg){
-        renderIdea(msg);
-        wipeNewIdeaFields();
+        reRenderIdea(msg)
       },
       error: function(error_message){
         alert(error_message.responseText);
