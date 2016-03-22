@@ -19,7 +19,7 @@ class IdeaVote{
         url: `/api/v1/ideas/${this.id}/vote`,
         data: {idea: {vote: modifier}},
         success: function(msg){
-          msgToIdea(msg).reRender();
+          msgToIdea(msg).reset();
         },
         error: function(error_message){
           alert(error_message.responseText);
