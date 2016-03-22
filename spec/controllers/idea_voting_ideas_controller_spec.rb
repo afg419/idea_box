@@ -21,7 +21,6 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
     post :vote, idea_id: idea.id, idea: {vote: 1}
     idea.reload
     expect(idea.quality).to eq 2
-
   end
 
   it "downvotes an idea" do
