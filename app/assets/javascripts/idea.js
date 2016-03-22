@@ -1,11 +1,13 @@
 function renderIdea(idea){
   $('.ideas').prepend(domIdea(idea));
   setDeleteListener(idea.id);
+  setVoteListener(idea.id)
 }
 
 function domIdea(idea){
   return (`<li id="idea-${idea.id}" class="idea">` +
-              `${idea.title}: ${formatQuality(idea.quality)}` +
+              voter() +
+              `  ${idea.title}: ${formatQuality(idea.quality)}` +
               `<p>Content: ${formatBody(idea.body)}<\p>`+
               deleteButton(idea.id) +
           `</li>`)
@@ -24,4 +26,10 @@ function formatBody(body){
     }
   }, 0)
   return body.substring(0,index)
+}
+
+function reRenderIdea(idea){
+  $('.ideas').find(`#idea-${idea.id}`).replaceWith(domIdea(idea))
+  setDeleteListener(idea.id);
+  setVoteListener(idea.id)
 }

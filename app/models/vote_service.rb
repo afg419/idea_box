@@ -2,14 +2,13 @@ class VoteService
   attr_reader :idea, :vote_modifier
 
   def initialize(params)
-    @idea = Idea.find_by(id: params[:idea][:id])
+    @idea = Idea.find_by(id: params[:idea_id])
     @vote_modifier = params[:idea][:vote]
   end
 
   def vote
     if vote_cast?
       execute_vote
-      "#{modifier_to_english} #{idea.title}"
     else
       "something went wrong..."
     end
@@ -18,6 +17,7 @@ class VoteService
   def execute_vote
     idea.quality = keep_within_bounds(idea.quality + vote_modifier.to_i)
     idea.save
+    idea
   end
 
   def modifier_to_english
