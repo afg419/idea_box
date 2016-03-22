@@ -1,5 +1,6 @@
 $(document).ready(function(){
   fetchIdeas();
+  setDeleteListener();
 })
 
 function fetchIdeas(){

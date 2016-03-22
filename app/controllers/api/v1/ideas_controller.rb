@@ -16,8 +16,7 @@ class Api::V1::IdeasController < ApplicationController
   def destroy
     idea = Idea.find_by(id: params[:id])
     if idea
-      idea.destroy
-      render json: "deleted idea #{idea.title}"
+      render json: idea.destroy
     else
       render json: "you didn't even have that idea."
     end

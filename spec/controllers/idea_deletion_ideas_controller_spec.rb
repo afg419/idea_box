@@ -7,7 +7,9 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
     delete :destroy, id: idea.id
 
-    expect(response.body).to eq "deleted idea #{idea.title}"
+    reply = JSON.parse(response.body)
+
+    expect(reply["title"]).to eq idea.title
     expect(response.status).to eq 200
     expect(Idea.find_by(id: idea.id)).to eq nil
   end
