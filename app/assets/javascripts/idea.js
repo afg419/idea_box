@@ -8,13 +8,17 @@ class Idea{
 
   render(){
     $('.ideas').prepend(this.domIdea());
-    setDeleteListener(this.id);
-    setVoteListener(this.id)
+    this.setEventListeners();
+  }
+
+  reRender(){
+    $('.ideas').find(`#idea-${this.id}`).replaceWith(this.domIdea());
+    this.setEventListeners();
   }
 
   domIdea(){
     return (`<li id="idea-${this.id}" class="idea">` +
-                voter() +
+                this.voter() +
                 `<div class=''>${this.ideaTitle()}</div>` + ` ${this.formatQuality()}` +
                 `<p class=''>Content: ${this.ideaBody()}<\p>` +
                 this.deleteButton() +
@@ -43,6 +47,25 @@ class Idea{
   deleteButton(){
     return `<input id="delete-${this.id}" class="delete-idea" type="button" value="Delete">`
   }
+
+  voter(){
+    return (`<input class="upvote" type="button" value="^">` +
+           `<input class="downvote" type="button" value="v">`)
+  }
+
+  setVoteListener(){
+    $(`#idea-${this.id}`).find('.upvote').on('click', () => vote(1,this.id))
+    $(`#idea-${this.id}`).find('.downvote').on('click', () => vote(-1,this.id))
+  };
+
+  setDeleteListener(){
+    $(`#delete-${this.id}`).on('click', () => {deleteIdea(this.id)})
+  }
+
+  setEventListeners(){
+    this.setVoteListener();
+    this.setDeleteListener();
+  }
 }
 
 
@@ -55,11 +78,7 @@ class Idea{
 //   setVoteListener(idea.id)
 // }
 //
-// function reRenderIdea(idea){
-//   $('.ideas').find(`#idea-${idea.id}`).replaceWith(domIdea(idea))
-//   setDeleteListener(idea.id);
-//   setVoteListener(idea.id)
-// }
+
 //
 // function domIdea(idea){
 //   return (`<li id="idea-${idea.id}" class="idea">` +

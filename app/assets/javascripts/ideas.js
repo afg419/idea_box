@@ -16,9 +16,7 @@ function fetchIdeas(){
 }
 
 function msgToIdea(elt){
-  debugger
-  var i = new Idea(elt.title, elt.body, elt.quality, elt.id)
-  return i
+  return new Idea(elt.title, elt.body, elt.quality, elt.id)
 }
 
 function renderIdeas(msg){

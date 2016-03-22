@@ -1,9 +1,3 @@
-
-
-function setDeleteListener(id){
-  $(`#delete-${id}`).on('click', () => {deleteIdea(id)})
-}
-
 function deleteIdea(id){
   $.ajax({
       type: "DELETE",
