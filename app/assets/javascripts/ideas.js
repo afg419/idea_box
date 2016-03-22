@@ -15,9 +15,13 @@ function fetchIdeas(){
   });
 }
 
+function msgToIdea(elt){
+  return new Idea(elt.title, elt.body, elt.quality)
+}
+
 function renderIdeas(msg){
   $('.idea').empty();
   msg.forEach(function(elt){
-    renderIdea(elt);
+    msgToIdea(elt).render();
   })
 }

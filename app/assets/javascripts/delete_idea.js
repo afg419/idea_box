@@ -1,6 +1,4 @@
-function deleteButton(id){
-  return `<input id="delete-${id}" class="delete-idea" type="button" value="Delete">`
-}
+
 
 function setDeleteListener(id){
   $(`#delete-${id}`).on('click', () => {deleteIdea(id)})

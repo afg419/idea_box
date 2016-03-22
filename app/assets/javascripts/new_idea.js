@@ -8,7 +8,7 @@ function createIdea(){
       url: "/api/v1/ideas",
       data: getNewIdeaFormData(),
       success: function(msg){
-        renderIdea(msg);
+        msgToIdea(msg).render();
         wipeNewIdeaFields();
       },
       error: function(error_message){
