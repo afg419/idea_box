@@ -1,3 +1,7 @@
+function renderIdea(idea){
+  $('.ideas').prepend(domIdea(idea))
+}
+
 function domIdea(idea){
   return (`<li class='idea ${idea.id}'>${idea.title}: ${formatQuality(idea.quality)}` +
             `<p>Content: ${formatBody(idea.body)}<\p>`+
