@@ -18,6 +18,6 @@ function fetchIdeas(){
 function renderIdeas(msg){
   $('.idea').empty();
   msg.forEach(function(elt){
-    $('.ideas').append(domIdea(elt))
+    renderIdea(elt);
   })
 }

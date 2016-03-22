@@ -1,13 +1,14 @@
 class Api::V1::IdeasController < ApplicationController
   def index
-    render json: Idea.order(created_at: :desc)
+    render json: Idea.order(:created_at)
   end
 
   def create
     idea = Idea.new(idea_params)
     if idea.save
-      render json: "created idea #{idea.title}"
+      render json: idea
     else
+      response.status = 400
       render json: idea.errors.full_messages
     end
   end
