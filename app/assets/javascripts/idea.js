@@ -1,11 +1,13 @@
 function renderIdea(idea){
   $('.ideas').prepend(domIdea(idea));
   setDeleteListener(idea.id);
+  setVoteListener(idea.id)
 }
 
 function domIdea(idea){
   return (`<li id="idea-${idea.id}" class="idea">` +
-              `${idea.title}: ${formatQuality(idea.quality)}` +
+              voter() +
+              `  ${idea.title}: ${formatQuality(idea.quality)}` +
               `<p>Content: ${formatBody(idea.body)}<\p>`+
               deleteButton(idea.id) +
           `</li>`)

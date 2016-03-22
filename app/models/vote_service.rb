@@ -2,7 +2,7 @@ class VoteService
   attr_reader :idea, :vote_modifier
 
   def initialize(params)
-    @idea = Idea.find_by(id: params[:idea][:id])
+    @idea = Idea.find_by(id: params[:idea_id])
     @vote_modifier = params[:idea][:vote]
   end
 
