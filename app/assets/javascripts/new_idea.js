@@ -13,7 +13,6 @@ function createIdea(){
       },
       error: function(error_message){
         alert(error_message.responseText);
-        console.log(error_message.responseText);
       }
   });
 }

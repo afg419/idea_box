@@ -1,10 +1,13 @@
 function renderIdea(idea){
-  $('.ideas').prepend(domIdea(idea))
+  $('.ideas').prepend(domIdea(idea));
+  setDeleteListener(idea.id);
 }
 
 function domIdea(idea){
-  return (`<li class='idea ${idea.id}'>${idea.title}: ${formatQuality(idea.quality)}` +
-            `<p>Content: ${formatBody(idea.body)}<\p>`+
+  return (`<li id="idea-${idea.id}" class="idea">` +
+              `${idea.title}: ${formatQuality(idea.quality)}` +
+              `<p>Content: ${formatBody(idea.body)}<\p>`+
+              deleteButton(idea.id) +
           `</li>`)
 }
 
