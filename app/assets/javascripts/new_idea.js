@@ -1,10 +1,12 @@
-function createIdea(i){
+function createIdea(){
   $.ajax({
       type: "POST",
       url: "/api/v1/ideas",
       data: getNewIdeaFormData(),
       success: function(msg){
-        msgToIdea(msg,i).render();
+        var newIdea = msgToIdea(msg);
+        document.i.ideas.push(newIdea)
+        newIdea.render();
         wipeNewIdeaFields();
       },
       error: function(error_message){

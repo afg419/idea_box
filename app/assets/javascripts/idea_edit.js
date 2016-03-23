@@ -38,7 +38,7 @@ class IdeaEdit{
         url: `/api/v1/ideas/${this.id}`,
         data: this.getEditIdeaFormData(),
         success: function(msg){
-          msgToIdea(msg).render();
+          msgToIdea(msg).reset();
         },
         error: function(error_message){
           alert(error_message.responseText);

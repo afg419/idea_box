@@ -1,6 +1,7 @@
 class IdeaDelete{
-  constructor(id){
-    this.id = id;
+  constructor(idea){
+    this.id = idea.id;
+    this.idea = idea
   }
 
   button(){
@@ -12,7 +13,8 @@ class IdeaDelete{
   }
 
   removeIdea(){
-    $(`#idea-${this.id}`).remove();
+    document.i.removeIdeaByID(this.id)
+    this.idea.$el.remove();
   }
 
   deleteIdea(){

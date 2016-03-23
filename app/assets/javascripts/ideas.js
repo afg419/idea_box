@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  var i = new Ideas();
-  i.fetchIdeas();
-  i.search();
-  i.create();
+  document.i = new Ideas();
+  document.i.fetchIdeas();
+  document.i.search();
+  document.i.create();
 })
 
 class Ideas{
@@ -12,7 +12,13 @@ class Ideas{
   }
 
   create(){
-    $('#submit-new-idea').on("click", () => {createIdea(this)});
+    $('#submit-new-idea').on("click", createIdea);
+  }
+
+  search(){
+    $('#search-idea').on('keyup', function(){
+      filterIdeas(this.value.toLowerCase());
+    });
   }
 
   fetchIdeas(){
@@ -30,30 +36,36 @@ class Ideas{
   }
 
   loadIdeas(msg){
-    $('.idea').empty();
     msg.forEach(function(elt){
-      this.ideas.push(msgToIdea(elt,this));
+      this.ideas.push(msgToIdea(elt));
     }.bind(this));
   }
 
-  renderIdeas(){
-    this.ideas.forEach(function(idea){
+  renderIdeas(callback = identity){
+    $('.ideas').empty();
+    var filteredIdeas = this.ideas.filter(callback)
+    filteredIdeas.forEach(function(idea){
       idea.render();
     });
   }
 
-  search(){
-    $('#search-idea').on('keyup',function(){
-      var searchingFor = this.value.toLowerCase();
-      var filtered_ideas = this.ideas.filter(function(idea){
-        (idea.title.indexOf(searchingFor) >= 0) || (idea.body.indexOf(searchingFor) >= 0)
-      })
-    })
+  findIdeaByID(id){
+    return this.ideas.findIndex(function(idea){return idea.id == id})
+  }
+
+  removeIdeaByID(id){
+    this.ideas = this.ideas.splice(this.findIdeaByID(id),1)
+  }
+
+  updateIdea(updated){
+    this.ideas[this.findIdeaByID(updated.id)] = updated
   }
 }
 
-function msgToIdea(elt, i){
-  var idea = new Idea(elt.title, elt.body, elt.quality, elt.id, i);
-  i.ideas.push(idea)
-  return idea
+function msgToIdea(elt){
+  return new Idea(elt.title, elt.body, elt.quality, elt.id);
+}
+
+function identity(idea){
+  return true
 }

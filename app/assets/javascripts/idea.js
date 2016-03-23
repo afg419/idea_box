@@ -1,19 +1,18 @@
 class Idea{
-  constructor(title, body, quality, id, ideas){
+  constructor(title, body, quality, id){
     this.id = id;
     this.title = title;
     this.body = body;
     this.quality = quality;
     this.active = false;
-    this.ideas = ideas
     this.format = new IdeaFormat(this)
     this.edit = new IdeaEdit(this)
-    this.delete = new IdeaDelete(id)
+    this.delete = new IdeaDelete(this)
     this.voter = new IdeaVote(id)
-    this.$el = this.createDiv();
   }
 
   render(){
+    this.createDiv();
     this.$el.html(this.ideaHtml());
     this.setEventListeners();
   }
@@ -38,6 +37,7 @@ class Idea{
   }
 
   reset(){
+    document.i.updateIdea(this)
     this.setEventListeners();
     this.render();
   }
