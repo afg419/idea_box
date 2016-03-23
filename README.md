@@ -16,4 +16,4 @@ Some sweet code: [This allows for dynamic filtering and sorting of ideas based o
 Some ugly code: [Couldn't get all JS classes to see the ideas object without holding it as an attribute on the `document`](https://github.com/afg419/idea_box/blob/0d723b8aad80a707d154d5ce2c2df273e6caba47/app/assets/javascripts/ideas.js.es6#L1-L7)  
 Test Suite:  
 ![this wouldve been a screen shot of the running tests if you had internet.](http://i.imgur.com/htfAyyw.png)  
-Unhappy Path Testing:  
+[Unhappy Path Testing](https://github.com/afg419/idea_box/blob/0d723b8aad80a707d154d5ce2c2df273e6caba47/spec/controllers/idea_voting_ideas_controller_spec.rb#L1-L55) 
