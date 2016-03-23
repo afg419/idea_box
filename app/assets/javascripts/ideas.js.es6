@@ -72,7 +72,7 @@ class Ideas{
 }
 
 function msgToIdea(elt){
-  return new Idea(elt.title, elt.body, elt.quality, elt.id, elt.updated_at);
+  return new Idea(elt.title, elt.body, elt.quality, elt.id, elt.created_at);
 }
 
 function identity(idea){
