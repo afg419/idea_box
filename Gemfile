@@ -11,6 +11,9 @@ gem 'figaro'
 gem 'pg'
 gem 'thin'
 gem 'rails_12factor', group: :production
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
+
 group :development, :test do
   gem 'byebug'
   gem 'mocha'
