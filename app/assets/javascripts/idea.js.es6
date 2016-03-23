@@ -1,10 +1,11 @@
 class Idea{
-  constructor(title, body, quality, id){
+  constructor(title, body, quality, id, updated_at){
     this.id = id;
     this.title = title;
     this.body = body;
     this.quality = quality;
     this.active = false;
+    this.updated_at = Date.parse(updated_at)
     this.format = new IdeaFormat(this)
     this.edit = new IdeaEdit(this)
     this.delete = new IdeaDelete(this)

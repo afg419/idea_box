@@ -72,21 +72,9 @@ class Ideas{
 }
 
 function msgToIdea(elt){
-  return new Idea(elt.title, elt.body, elt.quality, elt.id);
+  return new Idea(elt.title, elt.body, elt.quality, elt.id, elt.updated_at);
 }
 
 function identity(idea){
   return true
-}
-
-function noSort(idea1, idea2){
-  return  1
-}
-
-function descending(idea1, idea2){
-  return  idea1.quality - idea2.quality
-}
-
-function ascending(idea1, idea2){
-  return  - idea1.quality + idea2.quality
 }
