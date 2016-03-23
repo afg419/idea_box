@@ -8,7 +8,10 @@ RSpec.describe Api::V1::IdeasController, type: :controller do
 
     expect(idea.title).to eq "edited-t1"
     expect(idea.body).to eq "edited-b1"
+
+    reply = JSON.parse(response.body)
+
     expect(response.status).to eq 200
-    expect(response.body).to eq "edited idea #{idea.title}"
+    expect(reply["title"]).to eq "#{idea.title}"
   end
 end
