@@ -2,12 +2,15 @@ $(document).ready(function(){
   document.i = new Ideas();
   document.i.fetchIdeas();
   document.i.search();
+  document.i.sort();
   document.i.create();
 })
 
 class Ideas{
   constructor(){
     this.ideas = [];
+    this.order = noSort;
+    this.filter = identity;
     this.$el = $('.ideas')
   }
 
@@ -18,6 +21,14 @@ class Ideas{
   search(){
     $('#search-idea').on('keyup', function(){
       filterIdeas(this.value.toLowerCase());
+    });
+  }
+
+  sort(){
+    var orderings = {1: descending, -1: ascending}
+    $('#sort-idea').on('click', function(){
+      sortIdeas(orderings[this.order]);
+      this.order = -1 * this.order
     });
   }
 
@@ -41,10 +52,10 @@ class Ideas{
     }.bind(this));
   }
 
-  renderIdeas(callback = identity){
+  renderIdeas(callback = identity, sort = noSort){
     $('.ideas').empty();
-    var filteredIdeas = this.ideas.filter(callback)
-    filteredIdeas.forEach(function(idea){
+    var sortedFilteredIdeas = this.ideas.filter(callback).sort(sort)
+    sortedFilteredIdeas.forEach(function(idea){
       idea.render();
     });
   }
@@ -68,4 +79,16 @@ function msgToIdea(elt){
 
 function identity(idea){
   return true
+}
+
+function noSort(idea1, idea2){
+  return  1
+}
+
+function descending(idea1, idea2){
+  return  idea1.quality - idea2.quality
+}
+
+function ascending(idea1, idea2){
+  return  - idea1.quality + idea2.quality
 }
