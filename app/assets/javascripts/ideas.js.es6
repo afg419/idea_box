@@ -52,7 +52,6 @@ class Ideas{
 
   renderIdeas(){
     $('.ideas').empty();
-
     var sortedFilteredIdeas = this.ideas.filter(this.filter).sort(this.order)
     sortedFilteredIdeas.forEach(function(idea){
       idea.render();

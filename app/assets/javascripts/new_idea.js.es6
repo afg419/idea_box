@@ -6,7 +6,7 @@ function createIdea(){
       success: function(msg){
         var newIdea = msgToIdea(msg);
         document.i.ideas.push(newIdea)
-        newIdea.render();
+        document.i.renderIdeas();
         wipeNewIdeaFields();
       },
       error: function(error_message){

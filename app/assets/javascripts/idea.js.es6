@@ -33,7 +33,7 @@ class Idea{
 
   reset(){
     document.i.updateIdea(this)
-    this.render();
+    document.i.renderIdeas();
   }
 
   createDiv(){
