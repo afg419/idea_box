@@ -1,8 +1,8 @@
 # idea_box
 
-[Github Repo](https://github.com/afg419/idea_box/new/master?readme=1)
-[Production Site](https://ag-idea-box.herokuapp.com/)
-[List of commits on Github](https://github.com/afg419/idea_box/commits/master)
+[Github Repo](https://github.com/afg419/idea_box/new/master?readme=1)  
+[Production Site](https://ag-idea-box.herokuapp.com/)  
+[List of commits on Github](https://github.com/afg419/idea_box/commits/master)  
 
 ###Completion  
 Completes all basic functionality expectations.  
