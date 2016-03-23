@@ -1,14 +1,10 @@
-$(document).ready(function(){
-  $('#submit-new-idea').on("click", createIdea);
-})
-
-function createIdea(){
+function createIdea(i){
   $.ajax({
       type: "POST",
       url: "/api/v1/ideas",
       data: getNewIdeaFormData(),
       success: function(msg){
-        msgToIdea(msg).render();
+        msgToIdea(msg,i).render();
         wipeNewIdeaFields();
       },
       error: function(error_message){

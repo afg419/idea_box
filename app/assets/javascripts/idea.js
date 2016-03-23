@@ -1,10 +1,11 @@
 class Idea{
-  constructor(title, body, quality, id){
+  constructor(title, body, quality, id, ideas){
     this.id = id;
     this.title = title;
     this.body = body;
     this.quality = quality;
     this.active = false;
+    this.ideas = ideas
     this.format = new IdeaFormat(this)
     this.edit = new IdeaEdit(this)
     this.delete = new IdeaDelete(id)
