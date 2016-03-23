@@ -1,9 +1,9 @@
 class IdeaVote{
-  constructor(id){
-    this.id = id;
+  constructor(idea){
+    this.id = idea.id;
   }
 
-  buttons(){
+  button(){
     return (`<input class="upvote" type="button" value="^">` +
            `<input class="downvote" type="button" value="v">`)
   }

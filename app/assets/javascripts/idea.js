@@ -8,7 +8,7 @@ class Idea{
     this.format = new IdeaFormat(this)
     this.edit = new IdeaEdit(this)
     this.delete = new IdeaDelete(this)
-    this.voter = new IdeaVote(id)
+    this.voter = new IdeaVote(this)
   }
 
   render(){
@@ -18,9 +18,9 @@ class Idea{
   }
 
   ideaHtml(){
-    return (  this.voter.buttons() +
-              `<div class='title'>${this.format.ideaTitle()}</div>` + ` ${this.format.ideaQuality()}` +
-              `<p class='body'>Content: ${this.format.ideaBody()}</p>` +
+    return (  this.voter.button() +
+              ` <span class='title'>${this.format.ideaTitle()}</span>: ` + ` ${this.format.ideaQuality()}` +
+              `<p class='body'>Details: ${this.format.ideaBody()}</p>` +
               `${this.delete.button()} <span>${this.edit.button()}</span>` +
               `<br><br>`)
   }
@@ -31,14 +31,8 @@ class Idea{
     this.edit.setListener();
   }
 
-  resetHelpers(){
-    this.format = new IdeaFormat(this);
-    this.edit = new IdeaEdit(this);
-  }
-
   reset(){
     document.i.updateIdea(this)
-    this.setEventListeners();
     this.render();
   }
 
