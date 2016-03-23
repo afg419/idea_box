@@ -25,10 +25,8 @@ class Ideas{
   }
 
   sort(){
-    var orderings = {1: descending, -1: ascending}
-    $('#sort-idea').on('click', function(){
-      sortIdeas(orderings[this.order]);
-      this.order = -1 * this.order
+    $('#submit-sort-idea').on('click', function(){
+      sortIdeas();
     });
   }
 
@@ -52,9 +50,10 @@ class Ideas{
     }.bind(this));
   }
 
-  renderIdeas(callback = identity, sort = noSort){
+  renderIdeas(){
     $('.ideas').empty();
-    var sortedFilteredIdeas = this.ideas.filter(callback).sort(sort)
+
+    var sortedFilteredIdeas = this.ideas.filter(this.filter).sort(this.order)
     sortedFilteredIdeas.forEach(function(idea){
       idea.render();
     });
